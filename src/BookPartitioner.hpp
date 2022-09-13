@@ -7,19 +7,17 @@
 #include <sstream>
 #include <cmath>
 #include <iomanip>
+#include <fstream>
 
 class BookPartitioner
 {
 public:
     BookPartitioner( size_t startingPage, size_t numberOfPages, size_t numberOfDays );
     
-
-    
-    std::string getResultAsString();
-    void writeToCSV( std::string csvFileName = "bookParitions.csv" );
-
 private:
 
+    std::string getResultAsString();
+    void printToFile( std::string fileName = "bookParitions.txt" );
     void populatePagePartitions();
     bool errorCheck();
 

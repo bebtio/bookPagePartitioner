@@ -11,6 +11,9 @@ endPage_      ( endPage      ),
 numberOfDays_ ( numberOfDays )
 {
     populatePagePartitions();
+    printToFile();
+    std::cout << getResultAsString() << std::endl;
+
 }
 
 //*********************************************************//
@@ -53,7 +56,6 @@ void BookPartitioner::populatePagePartitions()
         currPage             = endPages_.at( currDay ) + 1;
     }
 
-    std::cout << getResultAsString() << std::endl;
 }
 
 //*********************************************************//
@@ -63,18 +65,23 @@ void BookPartitioner::populatePagePartitions()
 std::string BookPartitioner::getResultAsString()
 {
     std::stringstream ss;
-
+    
+    // Construct my fancy title.
+    ss  << "\n";
     ss  << " |-----------------------------------------|\n";
+    ss  << " |          Book Partitioner Pro           |\n";
+    ss  << " |-----------------------------------------|\n";
+
+    // Construct my fancy header.
     ss  << " | " 
         << std::setw(5) << "Day "  << " | " 
         << std::setw(5) << "Start" << " | " 
         << std::setw(5) << "End"   << " | " 
         << "Number of Pages |\n";
 
+    // Print out the formatted output.
     for( size_t i = 0; i < startPages_.size(); i++ )
     {
-
-
         ss  << " | " 
             << std::setw(5)  << i+1                                     << " | "
             << std::setw(5)  << startPages_.at(i)                       << " | "
@@ -82,7 +89,10 @@ std::string BookPartitioner::getResultAsString()
             << std::setw(15) << endPages_.at(i) - startPages_.at(i) + 1 << " | \n";
     }
 
+    // Fancy footer.
     ss  << " |-----------------------------------------|\n";
+
+    // return the string.
     return( ss.str() );
 }
 
@@ -102,7 +112,14 @@ bool BookPartitioner::errorCheck()
 //
 //
 //*********************************************************//
-void BookPartitioner::writeToCSV( std::string csvFileName )
+void BookPartitioner::printToFile( std::string fileName )
 {
+    std::ofstream outputFile( fileName );
 
+    if( outputFile.good() )
+    {
+        outputFile << getResultAsString();
+    }
+
+    outputFile.close();
 }
