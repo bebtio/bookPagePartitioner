@@ -1,4 +1,5 @@
 
 add_executable( bookPagePartitioner 
-                main.cpp 
+                main.cpp
+                BookPartitioner.cpp 
               )
