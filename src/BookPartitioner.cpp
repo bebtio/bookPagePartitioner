@@ -4,10 +4,10 @@
 //
 //
 //*********************************************************//
-BookPartitioner::BookPartitioner( size_t startingPage, size_t numberOfPages, size_t numberOfDays )
+BookPartitioner::BookPartitioner( size_t startingPage, size_t endPage, size_t numberOfDays )
 :
 startingPage_ ( startingPage ),
-numberOfPages_( numberOfPages ),
+endPage_      ( endPage      ),
 numberOfDays_ ( numberOfDays )
 {
     populatePagePartitions();
@@ -24,8 +24,9 @@ void BookPartitioner::populatePagePartitions()
 
     size_t currBin(0);
 
+    size_t numberOfPages( endPage_ - startingPage_ + 1 );
     // Loop through the pages left and distribute them to each day.
-    for( size_t currPage = 0; currPage < numberOfPages_; ++currPage )
+    for( size_t currPage = 0; currPage < numberOfPages; ++currPage )
     {
         // Compute the index of the current bin. It should loop through the number
         // of days until we run out of pages.
@@ -55,16 +56,46 @@ void BookPartitioner::populatePagePartitions()
     std::cout << getResultAsString() << std::endl;
 }
 
-
+//*********************************************************//
+//
+//
+//*********************************************************//
 std::string BookPartitioner::getResultAsString()
 {
     std::stringstream ss;
+
+    ss  << " |-----------------------------------------|\n";
+    ss  << " | " 
+        << std::setw(5) << "Day "  << " | " 
+        << std::setw(5) << "Start" << " | " 
+        << std::setw(5) << "End"   << " | " 
+        << "Number of Pages |\n";
+
     for( size_t i = 0; i < startPages_.size(); i++ )
     {
-        ss << "Day " << i+1 << " : " << startPages_.at(i) << ", " << endPages_.at(i) << "\n"; 
+
+
+        ss  << " | " 
+            << std::setw(5)  << i+1                                     << " | "
+            << std::setw(5)  << startPages_.at(i)                       << " | "
+            << std::setw(5)  << endPages_.at(i)                         << " | " 
+            << std::setw(15) << endPages_.at(i) - startPages_.at(i) + 1 << " | \n";
     }
 
+    ss  << " |-----------------------------------------|\n";
     return( ss.str() );
+}
+
+//*********************************************************//
+//
+//
+//*********************************************************//
+bool BookPartitioner::errorCheck()
+{
+    bool success( false );
+
+
+    return( success );
 }
 
 //*********************************************************//

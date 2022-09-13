@@ -6,7 +6,7 @@
 #include <utility>
 #include <sstream>
 #include <cmath>
-
+#include <iomanip>
 
 class BookPartitioner
 {
@@ -21,12 +21,13 @@ public:
 private:
 
     void populatePagePartitions();
+    bool errorCheck();
 
     std::vector< size_t > startPages_;
     std::vector< size_t > endPages_;
 
     size_t startingPage_;
-    size_t numberOfPages_;
+    size_t endPage_;
     size_t numberOfDays_;
 };
 
