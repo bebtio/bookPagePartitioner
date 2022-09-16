@@ -26,6 +26,7 @@ $ ./bookPagePartitioner 220 500 10
 ```
 Will produce this output in the terminal:
 
+```
  |-----------------------------------------|
  |          Book Partitioner Pro           |
  |-----------------------------------------|
@@ -41,4 +42,4 @@ Will produce this output in the terminal:
  |     9 |   445 |   472 |              28 | 
  |    10 |   473 |   500 |              28 | 
  |-----------------------------------------|
-
+```
