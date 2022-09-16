@@ -4,14 +4,19 @@
 //
 //
 //*********************************************************//
-BookPartitioner::BookPartitioner( size_t startingPage, size_t endPage, size_t numberOfDays )
+BookPartitioner::BookPartitioner( size_t startPage, size_t endPage, size_t numberOfDays )
 :
-startingPage_ ( startingPage ),
+startPage_    ( startPage    ),
 endPage_      ( endPage      ),
 numberOfDays_ ( numberOfDays )
 {
+    // Generate the partitions.
     populatePagePartitions();
+
+    // Print the paritions out to a file.
     printToFile();
+
+    // Also print it out to the terminal.
     std::cout << getResultAsString() << std::endl;
 
 }
@@ -27,7 +32,7 @@ void BookPartitioner::populatePagePartitions()
 
     size_t currBin(0);
 
-    size_t numberOfPages( endPage_ - startingPage_ + 1 );
+    size_t numberOfPages( endPage_ - startPage_ + 1 );
     // Loop through the pages left and distribute them to each day.
     for( size_t currPage = 0; currPage < numberOfPages; ++currPage )
     {
@@ -41,7 +46,7 @@ void BookPartitioner::populatePagePartitions()
 
     // Now loop through each of the bins, which should now contain the number
     // of pages to read per day, and assign start and end pages.
-    size_t currPage( startingPage_ );
+    size_t currPage( startPage_ );
     for( size_t currDay = 0; currDay < dayBins.size(); ++currDay )
     {
         // Give the current Day the current starting page.

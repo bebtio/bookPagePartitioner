@@ -16,7 +16,7 @@ int main( int argc, char *argv[] )
     // Check that the correct number of inputs have been passed in.
     if( argc != 4 )
     {
-        std::cout << "Please enter in this order: Starting Page, Last Page, Number of days to read.\n";
+        std::cout << "Usage: startingPage endingPage numberOfDays.\n";
     }
     else
     {
