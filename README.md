@@ -22,7 +22,7 @@ Run this from the bookPagePartioner/build/src directory by doing:
 for Example, entering the following:
 
 ```
-$ ./bookPagePartitioner 220 500 10
+./bookPagePartitioner 220 500 10
 ```
 Will produce this output in the terminal:
 
